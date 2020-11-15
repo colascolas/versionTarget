@@ -19,6 +19,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private static final long SCAN_PERIOD = 10000;
     private boolean mScanning = false;
 
-    private Handler handler = new Handler();
+    private Handler handler = new Handler(Looper.getMainLooper());
 
 
 
