@@ -56,10 +56,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(mBluetoothAdapter !=null) {
                     bluetoothLeScanner = mBluetoothAdapter.getBluetoothLeScanner();
-
                     scanLeDevice();
-
-                Log.i("SCANN","Scann lancé");
+                    Log.i("SCANN","Scann lancé");
                 }
             }
         });
@@ -76,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Pas d'adaptateur Bluetooth", Toast.LENGTH_LONG).show();
                 finish();
                 break;
+
             case NO_BLE:
                 Toast.makeText(this, "BLE not supported", Toast.LENGTH_SHORT).show();
                 finish();
@@ -86,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
                 onBluetoothActivationRequest();
                 break;
-                // la demande a été faite à l'utilisateur (retour par onRequestPermissionsResult...)
 
+                // la demande a été faite à l'utilisateur (retour par onRequestPermissionsResult...)
             case USER_REQUEST:
                 break;
         }
@@ -113,12 +112,16 @@ public class MainActivity extends AppCompatActivity {
                 return USER_REQUEST;
             }
         }
-
-
         return PERMISSION_GRANTED;
     }
 
 
+    /**
+     * Demande de permissions
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == PERMISSION_REQUEST) {
@@ -164,9 +167,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
+    /**
+     * lancement d'un scann pour une durée de 10s ou jusqu'à nouvel appel de la méthode
+     */
     private void scanLeDevice() {
         if (!mScanning) {
             // Stops scanning after a pre-defined scan period.
@@ -187,6 +190,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Callback en cas de découverte
+     */
     private ScanCallback leScanCallback =
             new ScanCallback() {
                 @Override
